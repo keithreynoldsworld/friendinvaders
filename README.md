@@ -13,9 +13,10 @@ The Hall of Champions will display the top scores and players in a star wars typ
 
 The main action will take place in an HTML5 canvas manipulated with Javascript.
 
-A user with a keyboard will be only using three keys: left, right, and spacebar(shoot).
 
-A user without a keyboard will be able to touch on screen buttons representing left right and spacebar(shoot).
+I believe in fun and creating fun.  That's the point of this app.  Serioius fun takes serious planning!
+
+
 ## User Stories
 
 [user stories on trello.com](https://trello.com/b/pSk7AzY3/friend-invaders "user-stories")
