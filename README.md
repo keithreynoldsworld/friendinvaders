@@ -18,7 +18,7 @@ A user with a keyboard will be only using three keys: left, right, and spacebar(
 A user without a keyboard will be able to touch on screen buttons representing left right and spacebar(shoot).
 ## User Stories
 
-Include a link to your trellow board with user stories.
+[user stories on trello.com](https://trello.com/b/pSk7AzY3/friend-invaders "user-stories")
 
 ## Wireframes
 check out my [wireframes](https://keithreynoldsworld.mybalsamiq.com/mockups/3298663.png?key=f9c1acfc12ca5adbd1ec074dba091473af584790 "mockups"). Simple pictures are the best.
