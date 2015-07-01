@@ -14,7 +14,7 @@ The Hall of Champions will display the top scores and players in a star wars typ
 The main action will take place in an HTML5 canvas manipulated with Javascript.
 
 
-I believe in fun and creating fun.  That's the point of this app.  Serioius fun takes serious planning!
+I believe in fun and in creating fun.  That's the point of this app.  Serious fun takes serious planning!
 
 
 ## User Stories
