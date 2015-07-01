@@ -68,5 +68,20 @@ photo model
 
 ## APIs, Plugins, Libraries and Frameworks
 
-A list of all of the third-party tools and code you will need for your project as well as a short demo (with code) of you successfully using that tool.
+[phaser.io a game engine](http://phaser.io/ "phaser")
+
+[jquery](https://jquery.com/ "jquery")
+
+[jQuery facefinder plug-in](http://facedetection.jaysalvat.com/ "facefinder")
+
+[facebook login](https://developers.facebook.com/products/login "facebook login")
+
+[Facebook graph api](https://developers.facebook.com/docs/graph-api "facebook graph api")
+
+[parse.com cloud for back-end](https://www.parse.com "parse")
+
+[git hub to host front end code](https://github.com/keithreynoldsworld "github")
+
+
+Demos coming soon.
 
