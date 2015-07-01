@@ -26,7 +26,45 @@ check out my [wireframes](https://keithreynoldsworld.mybalsamiq.com/mockups/3298
 
 ## Models
 
-A list of all of your models with necessary information. Use either a markdown list or embed code (using ``` syntax) of what your waterline JSON models will look like.
+level model
+	
+*	level: number, required default 1
+*	user_shots_per_second: number required default 5 
+*	number_of_friend_invaders: number required default 10
+*	size_of_friends: number required default 25
+*	speed_of_friends: number required default 1
+*	path_of_friends: string required default “normal"
+*	path_of_user bullet: string required default “straight"
+*	path_of_aliens bullets: string required default “straight”
+*	speed_of_user bullet: number required default 20
+*	speed_of_aliens bullets: number required default 20
+*	points_per_kill: number required default 1
+	
+	
+user model
+
+*	photos_of_friends: array of 10 photo models 
+*	first_name: string required
+*	last_name: string required
+*	photo_of_user: object photo model
+*	current_level: number required default 1
+	
+photo model
+
+* url : string required
+* x — X coord of the face in the picture
+* y — Y coord of the face in the picture
+* width — Width of the face
+* height — Height of the face
+* positionX — X position relative to the document
+* positionY — Y position relative to the document
+* offsetX — X position relative to the offset parent
+* offsetY — Y position relative to the offset parent
+* scaleX — Ratio between original image width and displayed width
+* scaleY — Ratio between original image height and displayed height
+* confidence — Level of confidence
+
+
 
 ## APIs, Plugins, Libraries and Frameworks
 
