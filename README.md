@@ -103,12 +103,16 @@ photo model
 * scaleY — Ratio between original image height and displayed height
 * confidence — Level of confidence
 
-score model
+level score model
 
 * id_of_user - string, required
-* first_name_of_user - string, required
-* last_name_of_user - string, required
-* final_score - number
+* final_level_score - number
+* level - number
+
+final score model
+
+* id_of_user - string, required
+* final_score - string, required
 
 
 ## APIs, Plugins, Libraries and Frameworks
