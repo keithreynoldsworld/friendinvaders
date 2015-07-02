@@ -18,7 +18,7 @@ I believe in fun and in creating fun.  That's the point of this app.  Serious fu
 
 ## Bare Bones and More features
 
-Please keep mind what I've described is a minimal bare bones version - the bottom rung I hope to acheive.
+Please keep mind what I've described is a minimal bare bones version - the bottom rung I hope to achieve.
 
 Other features include:
 * upon been killed, a picture of the user's friend who killed him or her appears with a speech bubble that says "haha [user name] you're dead"
