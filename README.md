@@ -16,6 +16,44 @@ The main action will take place in an HTML5 canvas manipulated with Javascript.
 
 I believe in fun and in creating fun.  That's the point of this app.  Serious fun takes serious planning!
 
+## Bare Bones and More features
+
+Please keep mind what I've described is a minimal bare bones version - the bottom rung I hope to acheive.
+
+Other features include:
+* upon been killed, a picture of the user's friend who killed him or her appears with a speech bubble that says "haha [user name] you're dead"
+* user can only play five games.  the ability to play more comes back in two hours.
+* user's friends' face appear in a porthole of a spaceship
+* different types of deaths
+* as many levels as possible, all different.  my real goal for presentation day is 100 levels.
+* sign in with google plus
+* android and iphone app versions
+* using the users's 'likes' against him or her.  The friend invaders could rag on their favorite bars, restaurants, books, etc.
+* the ability to choose exactly which friends you fight against.
+* two player game - two shooters down below, each controlled from a different location
+* additional types of friend invaders... perhaps a friend invaders centipede spaceship?
+* different projectiles - like bananas that don't do much damage and make a mess.  or one that shrinks the enemy and you have to shrink it so many times to kill it
+* friendlies in the air field who you may not hit
+* other levels could be other games, like concentration, simple simon, flappybird or combat - all personalized with facebook.
+* listen to a soundtrack while playing
+* special bonus targets like the fruit in pacman
+* keep track of who has killed who and how many times, so you and your friends can compete- i killed u 5000 times! - oh yeah, well i killed you 6147 times, so there, ha!
+* allow the user to upload any pictures of their choice for the friend invaders
+* the ability to purchase more lives, or a cool hat for the userpic - in app purchases
+* a map of where people are currently playing friend invaders
+* personalized friend invaders merchandise
+* user must hit ammo ships to refuel
+* record your game and share on youtube
+* slot machine level bonu!
+* comment the code very well so other coders can easily make their ownn versions
+* the ability to make your own level to share with friends
+* adapt to be an official facebook app
+* adapt the theme song to include the user's name
+* choose a language
+* post a screenshot of your game on facebook
+* replay!
+* pause
+
 
 ## User Stories
 
