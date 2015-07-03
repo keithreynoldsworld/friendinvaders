@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '120671521602697',
+          xfbml      : true,
+          version    : 'v2.3'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<fb:login-button scope="public_profile,email,user_friends,read_custom_friendlists" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">
+</div>
+<button id="friendlist"></button>
+	<main id="container">
+		<h1>Welcome to your new app</h1>
+		<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/v/t1.0-1/c20.20.253.253/s50x50/600579_10100588225423355_530492250_n.jpg?oh=eced011e07ca7d65c7f1c279487445ea&oe=562EB08E&__gda__=1445015180_e3bda6711c59c37daa98c823b73203ce" id="picture"/>
+	</main>
+	
+		
+		
+	<script type="text/javascript" src="dist/all.js"></script>
+
+</body>
+</html>
