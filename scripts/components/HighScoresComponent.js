@@ -1,0 +1,1 @@
+HighScoresComponent.js
