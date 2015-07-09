@@ -1,8 +1,12 @@
 var React = require('react');
 var $ = require('jquery');
 var Backbone = require('backbone');
-
-
+var killListHolder = {happy:"sad"};
+var klist = {};
+var klistFINAL = {};
+klistFINAL.list = [];
+var myProfilePic = {};
+myProfilePic.house = {};
 // var LoginComponent = require("./components/LoginComponent");
 // var ChooseFriendsToKillComponent = require("./components/ChooseFriendsToKillComponent");
 // var AboutComponent = require("./components/AboutComponent");
@@ -23,8 +27,8 @@ var App = Backbone.Router.extend({
 		"levelthree": "levelthree",
 	},
 	login: function() {
-		$('#leveltitle').html("WELCOME TO FRIEND INVADERS");
-		$('#phaser-example').html('<button id="gotochoose">choose which friends to kill</button>');
+		$('#leveltitle').html("are you ready to MURDER your friends?");
+		$('#phaser-example').html('<button id="gotochoose">kill</button>');
 		$('#gotochoose').on('click', function(e){
 			e.preventDefault;
 			console.log('button works');
@@ -35,12 +39,25 @@ var App = Backbone.Router.extend({
 		// 	document.getElementById("container"));
 	},
 	choosefriendstokill: function() {
-		$('#leveltitle').html("CHOOSE FRIENDS TO KILL");
-		$('#phaser-example').html('<button id="friendlist">get list of friends</button><br/><br/><button id="gotogame">start playing the game</button>');
+		$('#leveltitle').html("First CHOOSE which friends to MURDER. Then press PLAY!");
+		$('#phaser-example').html('<button style="width:120px;height:120px;background:none" id="friendlist">CHOOSE YOUR VICTIMS</button><button id="gotogame">play</button><br/>');
 		$('#gotogame').on('click', function(){
+			 
+			 klist.LIST =  $("#chosen").find('img');
+			 console.log(klist.LIST);
+			 for(var i = 0;i<4;i++){
+			 	klistFINAL.list.push(klist.LIST[i].src);
+			 	
+			 }
+             console.log(klistFINAL.list);
 			myRouter.navigate('levelone', {trigger: true});
-		})
+		});
 		displayFriends();
+		FB.api('me/picture?width=100&height=100', function(response) {
+  			console.log(response);
+  			myProfilePic.house = response;
+  		});
+  		
 		//displayFriends();
 
 		// React.render(
@@ -70,6 +87,7 @@ var App = Backbone.Router.extend({
 	levelone: function() {
 		$('#leveltitle').html("LEVEL ONE - EASY PEASEY");
 		$('#phaser-example').html('');
+		$('#chooserlistcontainer').hide();
 
 		levelOne();
 
@@ -102,6 +120,9 @@ var App = Backbone.Router.extend({
 var myRouter = new App();
 Backbone.history.start();
  var friendList = {};
+
+
+
 
 console.log('application running');
 
@@ -184,7 +205,7 @@ console.log('application running');
     });
   }
 function displayFriends(){
-   
+
 
     $( "#friendlist" ).on( "click", function() {
   		FB.api('me/taggable_friends?limit=5000&fields=name,picture.width(160).height(160)', function(response) {
@@ -192,20 +213,30 @@ function displayFriends(){
   		friendList.list = response;
   		console.log(friendList.list);
   		for(var i=0;i<response.data.length;i++){
-  		$('#phaser-example').append("<img src='" + friendList.list.data[i].picture.data.url + "'/>")
+  		$('#watchlist').prepend("<div class='chooser'><img src='" + friendList.list.data[i].picture.data.url + "'/><br/><br/>"+
+  			friendList.list.data[i].name + "<br/><button class='kill'>KILL</button> </div>")
   		}
+  		addClickersToFriends();
 		});
 	});
 }
 
+function addClickersToFriends(){
+	function addToWatch(e) {
+	console.log("clicked");
 
-
+	$('#chosen').append(this);
+	$(this).append('<br/>R. I. P.');
+	}	
+	$('.chooser').click(addToWatch);
+ 			
+}
 function levelOne(){
 		var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 		var file1 = {
 		            type: 'image',
 		            key: 'example',
-		            url: friendList.list.data[0].picture.data.url,
+		            url: klistFINAL.list[0],
 		            data: null,
 		            error: false,
 		            loaded: false
@@ -229,7 +260,7 @@ function levelOne(){
 				var file2 = {
 		            type: 'image',
 		            key: 'example',
-		            url: friendList.list.data[1].picture.data.url,
+		            url: klistFINAL.list[1],
 		            data: null,
 		            error: false,
 		            loaded: false
@@ -253,7 +284,7 @@ function levelOne(){
 		        var file3 = {
 		            type: 'image',
 		            key: 'example',
-		            url: friendList.list.data[2].picture.data.url,
+		            url: klistFINAL.list[2],
 		            data: null,
 		            error: false,
 		            loaded: false
@@ -277,7 +308,7 @@ function levelOne(){
 		        		var file4 = {
 		            type: 'image',
 		            key: 'example',
-		            url: friendList.list.data[3].picture.data.url,
+		            url: klistFINAL.list[3],
 		            data: null,
 		            error: false,
 		            loaded: false
@@ -298,6 +329,30 @@ function levelOne(){
 		        file4.data.crossOrigin = '';
 		        file4.data.src = file4.url;
 
+
+		       	var file5 = {
+		            type: 'image',
+		            key: 'example',
+		            url: myProfilePic.house.data.url,
+		            data: null,
+		            error: false,
+		            loaded: false
+		        };
+
+		        file5.data = new Image();
+		        file5.data.name = file5.key;
+
+		        file5.data.onload = function () {
+		            file5.loaded = true;
+		            game.cache.addImage(file5.key, file5.url, file5.data);
+		        };
+
+		        file5.data.onerror = function () {
+		            file5.error = true;
+		        };
+
+		        file5.data.crossOrigin = '';
+		        file5.data.src = file5.url;
 		function preload() {
 			game.load.crossOrigin = 'anonymous';
 		    game.load.image('bullet', '../assets/games/invaders/bullet.png');
@@ -410,7 +465,7 @@ function levelOne(){
 		        for (var x = 0; x < 10; x++)
 		        {
 		            var alien = aliens.create(x * 48, 1 * 50, 'invader1');
-		            alien.scale.setTo(.18, .18);
+		            alien.scale.setTo(.25, .25);
 		            alien.anchor.setTo(0.5, 0.5);
 		            // alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
 		            // alien.play('fly');
@@ -419,7 +474,7 @@ function levelOne(){
 		    	for (var x = 0; x < 10; x++)
 		        {
 		            var alien = aliens.create(x * 48, 2 * 50, 'invader2');
-		            alien.scale.setTo(.18, .18);
+		            alien.scale.setTo(.25, .25);
 		            alien.anchor.setTo(0.5, 0.5);
 		            // alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
 		            // alien.play('fly');
@@ -428,7 +483,7 @@ function levelOne(){
 		        for (var x = 0; x < 10; x++)
 		        {
 		            var alien = aliens.create(x * 48, 3 * 50, 'invader3');
-		            alien.scale.setTo(.18, .18);
+		            alien.scale.setTo(.25, .25);
 		            alien.anchor.setTo(0.5, 0.5);
 		            // alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
 		            // alien.play('fly');
@@ -437,7 +492,7 @@ function levelOne(){
 		        for (var x = 0; x < 10; x++)
 		        {
 		            var alien = aliens.create(x * 48, 4 * 50, 'invader4');
-		            alien.scale.setTo(.18, .18);
+		            alien.scale.setTo(.25, .25);
 		            alien.anchor.setTo(0.5, 0.5);
 		            // alien.animations.add('fly', [ 0, 1, 2, 3 ], 20, true);
 		            // alien.play('fly');
