@@ -3,25 +3,67 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="scripts/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
 </head>
 <body>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
+   
+     
+  <script>
+  Parse.initialize("n3pY1RgYj6joprnEw22uqgnrKuCjlOXUxzq2hWhl", "LqdhjBO6ENSnsk7z7N4k4sfQw7eOv7ewC8kl1cV5");
+//'120671521602697',
+  // This is called with the results from from FB.getLoginStatus().
+ 
+  // This is called with the results from from FB.getLoginStatus().
+ 
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+ window.fbAsyncInit = function() {
+     Parse.FacebookUtils.init({
+
           appId      : '120671521602697',
+          status :true,
+          cookie: true,
           xfbml      : true,
           version    : 'v2.3'
-        });
-      };
+      });
+         console.log('the parse login should be next');
+         $('#facebook-login').on('click', function(){
+             Parse.FacebookUtils.logIn(null, {
+                 success: function(user) {
+                    if (!user.existed()) {
+                       alert("User signed up and logged in through Facebook!");
+                    } 
+                    else {
+                       alert("User logged in through Facebook!");
+                    }
+                },
+                error: function(user, error) {
+                    alert("User cancelled the Facebook login or did not fully authorize.");
+                }
+            });
+         });
 
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
+
+  };
+
+      
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  
+</script>
 
 
 <!--
@@ -30,8 +72,7 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email,user_friends,read_custom_friendlists" onlogin="checkLoginState();">
-</fb:login-button>
+<div id="facebook-login">LOG IN WITH FACEBOOK</div>
 
 <div id="status">
 </div>
