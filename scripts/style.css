@@ -9,7 +9,7 @@ body {
 	background: pink;
 	color: black;
 	display: inline-block;
-	padding: 20px;
+	padding: 4px;
 	border: 10px solid red;
 	font-size: 20px;
 	font-style: bold;
@@ -19,17 +19,19 @@ body {
 
 #watchlist {
 	width: 500px;
+  background: orange;
 
     height: 500px;
-    overflow: scroll;
+    overflow: hidden;
     float:left;
 }
 
 #chosen { 
 	width:500px;
 	height: 500px;
-	overflow: scroll;
+	overflow: hidden;
 	float: left;
+  background: purple;
 
 }
 #chosen > div{
@@ -131,4 +133,5 @@ button:before {
 	visibility: hidden;
 	color: black;
 	background: green;
+  height: 10%;
 }

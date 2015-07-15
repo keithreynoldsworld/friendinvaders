@@ -40382,6 +40382,7 @@ var klistFINAL = {};
 klistFINAL.list = [];
 var myProfilePic = {};
 myProfilePic.house = {};
+Parse.initialize('n3pY1RgYj6joprnEw22uqgnrKuCjlOXUxzq2hWhl', 'LqdhjBO6ENSnsk7z7N4k4sfQw7eOv7ewC8kl1cV5');
 // var LoginComponent = require("./components/LoginComponent");
 // var ChooseFriendsToKillComponent = require("./components/ChooseFriendsToKillComponent");
 // var AboutComponent = require("./components/AboutComponent");
@@ -40407,10 +40408,13 @@ var App = Backbone.Router.extend({
 		$('#leveltitle').append('<button id=\'LO\'>Logout from facebook</button>');
 		$('#leveltitle').append('are you ready to MURDER your friends?');
 		$('#phaser-example').html('<button id="gotochoose">kill</button>');
-		$('#LO').on('click', function (e) {
-			e.preventDefault;
-			FB.logout(function (response) {});
-		});
+		// $('#LO').on('click', function(e){
+		// 	e.preventDefault;
+		// 	console.log('LO button clicked');
+		// 	FB.logout(function(response) {
+		// 				// user is now logged out
+		// 	});
+		// });
 		$('#gotochoose').on('click', function (e) {
 			e.preventDefault;
 			console.log('button works');
@@ -40429,17 +40433,26 @@ var App = Backbone.Router.extend({
 		$('#gotogame').on('click', function () {
 
 			klist.LIST = $('#chosen').find('img');
-			console.log(klist.LIST);
-			for (var i = 0; i < 4; i++) {
-				klistFINAL.list.push(klist.LIST[i].src);
+			console.log(klist.LIST[0].src);
+			console.log(klist.LIST.length);
+			if (klist.LIST.length === 0) {} else if (klist.LIST.length === 1) {
+				klistFINAL.list.push(klist.LIST[0].src);klistFINAL.list.push(klist.LIST[0].src);klistFINAL.list.push(klist.LIST[0].src);klistFINAL.list.push(klist.LIST[0].src);
+			} else if (klist.LIST.length === 2) {
+				klistFINAL.list.push(klist.LIST[0].src);klistFINAL.list.push(klist.LIST[1].src);klistFINAL.list.push(klist.LIST[0].src);klistFINAL.list.push(klist.LIST[1].src);
+			} else if (klist.LIST.length === 3) {
+				klistFINAL.list.push(klist.LIST[0].src);klistFINAL.list.push(klist.LIST[1].src);klistFINAL.list.push(klist.LIST[2].src);klistFINAL.list.push(klist.LIST[0].src);
+			} else {
+				for (var i = 0; i < 4; i++) {
+					klistFINAL.list.push(klist.LIST[i].src);
+				}
 			}
-			console.log(klistFINAL.list);
+			//          console.log(klistFINAL.list);
 			myRouter.navigate('levelone', { trigger: true });
 		});
 		displayFriends();
 		FB.api('me/picture?width=100&height=100', function (response) {
 			console.log(response);
-			myProfilePic.house = response;
+			myProfilePic.house = response.data.url;
 		});
 
 		//displayFriends();
@@ -40505,15 +40518,46 @@ console.log('application running');
 function displayFriends() {
 
 	$('#friendlist').on('click', function () {
-		FB.api('me/taggable_friends?limit=5000&fields=name,picture.width(160).height(160)', function (response) {
-			console.log(response);
-			friendList.list = response;
-			console.log(friendList.list);
-			for (var i = 0; i < response.data.length; i++) {
-				$('#watchlist').prepend('<div class=\'chooser\'><img src=\'' + friendList.list.data[i].picture.data.url + '\'/><br/><br/>' + friendList.list.data[i].name + '<br/><button class=\'kill\'>KILL</button> </div>');
+		console.log('friendlist-button');
+
+		var uQuery = new Parse.Query(Parse.User);
+		// uQuery.limit(10);
+		// uQuery.toJSON;
+		//could be ascending
+
+		uQuery.find({
+			success: function success(results) {
+
+				console.log(results);
+				console.log(results[0].attributes.first_name);
+				var f = ['asf', 'asdfasdf', 'asdffads'];
+				console.log(f);
+
+				//console.log(results.length);
+				// var eat = results[0];
+				// console.log(eat);
+				for (var i = 0; i < results.length; i++) {
+					$('#watchlist').prepend('<div class=\'chooser\'><img src=\'' + results[i].attributes.profile_pic_url + '\'/><br/><br/>' + results[i].attributes.first_name + '<br/> ' + results[i].attributes.last_name + '<br/><button class=\'kill\'>KILL</button> </div>');
+					//prob return result and make into a variable
+				}
+				addClickersToFriends();
+			},
+
+			error: function error(_error) {
+				alert('Error: ' + _error.code + ' ' + _error.message);
 			}
-			addClickersToFriends();
 		});
+
+		// 		FB.api('/me/friends', {fields: 'id'},function(response) {
+		// 		$('#phaser-example').append(response);
+		// 		friendList.list = response;
+		// 		console.log(friendList.list);
+		// 		for(var i=0;i<response.data.length;i++){
+		// 		$('#watchlist').prepend("<div class='chooser'><img src='" + friendList.list.data[i].picture.data.url + "'/><br/><br/>"+
+		// 			friendList.list.data[i].name + "<br/><button class='kill'>KILL</button> </div>")
+		// 		}
+
+		// });
 	});
 }
 
@@ -40624,29 +40668,29 @@ function levelOne() {
 	file4.data.crossOrigin = '';
 	file4.data.src = file4.url;
 
-	var file5 = {
-		type: 'image',
-		key: 'example',
-		url: myProfilePic.house.data.url,
-		data: null,
-		error: false,
-		loaded: false
-	};
+	// var file5 = {
+	//     type: 'image',
+	//     key: 'example',
+	//     url: myProfilePic.house.data.url,
+	//     data: null,
+	//     error: false,
+	//     loaded: false
+	// };
 
-	file5.data = new Image();
-	file5.data.name = file5.key;
+	// file5.data = new Image();
+	// file5.data.name = file5.key;
 
-	file5.data.onload = function () {
-		file5.loaded = true;
-		game.cache.addImage(file5.key, file5.url, file5.data);
-	};
+	// file5.data.onload = function () {
+	//     file5.loaded = true;
+	//     game.cache.addImage(file5.key, file5.url, file5.data);
+	// };
 
-	file5.data.onerror = function () {
-		file5.error = true;
-	};
+	// file5.data.onerror = function () {
+	//     file5.error = true;
+	// };
 
-	file5.data.crossOrigin = '';
-	file5.data.src = file5.url;
+	// file5.data.crossOrigin = '';
+	// file5.data.src = file5.url;
 	function preload() {
 		game.load.crossOrigin = 'anonymous';
 		game.load.image('bullet', '../assets/games/invaders/bullet.png');
@@ -41586,8 +41630,6 @@ function levelThree() {
 		stateText.visible = false;
 	}
 }
-
-// user is now logged out
 // React.render(
 
 // 		<AboutComponent user={user} myRouter={myRouter} />,
